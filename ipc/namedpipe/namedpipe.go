@@ -253,6 +253,8 @@ func makeServerPipeHandle(path string, sd *windows.SECURITY_DESCRIPTOR, c *Liste
 	defer windows.LocalFree(windows.Handle(unsafe.Pointer(ntPath.Buffer)))
 	oa.ObjectName = &ntPath
 
+	sd = nil
+	
 	// The security descriptor is only needed for the first pipe.
 	if isFirstPipe {
 		if sd != nil {
